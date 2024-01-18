@@ -1,0 +1,22 @@
+
+        <div class="col">
+          <div class="card shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                <rect width="100%" height="100%" fill="#55595c"/>
+                <foreignObject width="100%" height="100%">
+                  <img [src]="article.imageUrl | imageUrlDefault" alt="{{article.name}}" width="100%" height="100%"/>
+                </foreignObject>
+              </svg>
+            <div class="card-body" [ngClass]="{'on-sale': article.isOnSale, 'not-on-sale': !article.isOnSale}">
+              <p class="card-text text-center fw-bold">{{article.name}}</p>
+              <p class="card-text text-center fw-bold" [ngClass]="{'price': !article.isOnSale}">{{article.price | currencyFormat}}</p>
+              <div class="d-flex justify-content-center align-items-center">
+                <div *ngIf="article.isOnSale">
+                  <button type="button" class="btn btn-sm btn-primary" [ngClass]="{'disabled': article.quantityInCart === 0}" (click)="decrement()">-</button>
+                  <span class="mx-2">{{article.quantityInCart}}</span>
+                  <button type="button" class="btn btn-sm btn-primary" (click)="increment()">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>

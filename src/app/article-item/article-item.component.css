@@ -1,0 +1,15 @@
+.on-sale{
+    background-color: lightblue;
+}
+
+.not-on-sale {
+    background-color: lightgray;
+}
+.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+.price {
+    color: gray;
+}

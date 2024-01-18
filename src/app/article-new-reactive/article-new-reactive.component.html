@@ -1,0 +1,43 @@
+<div class="container mt-3 col-8">
+    <h2 class="mb-3">Crear artículo</h2>
+    <form [formGroup]="articleForm" (ngSubmit)="submitForm()">
+        <div class="mb-3 col-4">
+          <label for="name" class="form-label">Nombre del artículo</label>
+          <input type="text" class="form-control" id="name" formControlName="name" aria-describedby="emailHelp" [class.is-invalid]="articleForm.get('name')?.invalid && articleForm.get('name')?.touched">
+          <div class="invalid-feedback" *ngIf="articleForm.get('name')?.hasError('required') && articleForm.get('name')?.touched">
+            El nombre del artículo es obligatorio.
+          </div>
+          <div class="invalid-feedback" *ngIf="articleForm.get('name')?.hasError('test') && articleForm.get('name')?.touched">
+            Introduzca un nombre válido.
+          </div>
+        </div>
+        <div class="mb-3 col-4">
+          <label for="price" class="form-label">Precio del artículo</label>
+          <input type="text" class="form-control" formControlName="price" id="price" [class.is-invalid]="articleForm.get('price')?.invalid && articleForm.get('price')?.touched">
+          <div class="invalid-feedback text-danger" *ngIf="articleForm.get('price')?.hasError('required') && articleForm.get('price')?.touched">
+          El precio del artículo es obligatorio.
+          </div>
+          <div class="invalid-feedback text-danger" *ngIf="articleForm.get('price')?.hasError('pattern') && articleForm.get('price')?.touched">
+          Ingresa un valor numérico válido.
+          </div>
+          <div class="invalid-feedback text-danger" *ngIf="articleForm.get('price')?.hasError('min') && articleForm.get('price')?.touched">
+           El precio debe ser mayor a 0.
+            </div>
+        </div>
+        <div class="mb-3 col-4">
+            <label for="url" class="form-label">URL del artículo</label>
+            <input type="text" class="form-control" formControlName="url" id="url" [class.is-invalid]="articleForm.get('url')?.invalid && articleForm.get('url')?.touched">
+            <div class="invalid-feedback text-danger" *ngIf="articleForm.get('url')?.hasError('required') && articleForm.get('url')?.touched">
+            La url del artículo es obligatoria
+            </div>
+            <div class="invalid-feedback text-danger" *ngIf="articleForm.get('url')?.hasError('pattern') && articleForm.get('url')?.touched">
+              Ingresa una url válida.
+              </div>
+          </div>
+        <div class="mb-3 form-check col-4">
+          <input type="checkbox" class="form-check-input" formControlName="sale" id="sale">
+          <label class="form-check-label" for="sale">En venta</label>
+        </div>
+        <button type="submit" [disabled]="articleForm.invalid" class="btn btn-primary">Enviar</button>
+      </form>
+</div>
