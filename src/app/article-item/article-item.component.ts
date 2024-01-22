@@ -8,14 +8,16 @@ import { ArticleQuantityChange } from '../article';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ArticleItemComponent {
-  @Input() article!: Article;
-  @Output() changeQuantity = new EventEmitter<ArticleQuantityChange>();
+  @Input() public article!: Article;
+  @Output() public changeQuantity: EventEmitter<ArticleQuantityChange> = new EventEmitter();
 
   increment():void{
-    this.changeQuantity.emit({ article : this.article, quantity : this.article.quantityInCart + 1});
+    this.changeQuantity.emit({ article : this.article, quantity: 1});
   }
 
   decrement():void {
-    this.changeQuantity.emit({ article: this.article, quantity : this.article.quantityInCart -1 });
+    if(this.article.quantityInCart > 0){
+      this.changeQuantity.emit({ article: this.article, quantity : -1 });
+    }
   }
 }

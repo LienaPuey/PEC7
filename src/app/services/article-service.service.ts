@@ -20,17 +20,8 @@ export class ArticleServiceService {
     return this.http.get<Article>(this.baseUrl + id);
   }
   
-  changeQuantity(articleID:number, changeInQuantity:number):Observable<Article|null> {
-    const patchData = {quantityInCart : changeInQuantity}
-    const url = `${this.baseUrl}/${articleID}`;
-
-    return this.http.patch<Article>(url, patchData)
-    .pipe(
-      catchError(error => {
-        console.log('Error en la solicitud:', error);
-        return of(null);
-      })
-    );
+  changeQuantity(articleID:number, changeInQuantity:number):Observable<any> {
+    return this.http.patch(this.baseUrl+ articleID, {changeInQuantity: changeInQuantity});
   }
 
   create(article:Article):Observable<any>{

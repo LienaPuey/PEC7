@@ -39,26 +39,27 @@ export class ArticleListComponent implements OnInit{
   public articles: Observable<Article[]> | undefined;
   searchTerm$ = new Subject<string>();
   articles$!: Observable<Article[]>;
-
+  private reloadArticleList : Subject<void> = new Subject();
+  
   constructor(private articleService : ArticleServiceService){
+
+  }
+  ngOnInit(): void {
+    this.articles = this.articleService.getArticles();
     this.articles$= this.searchTerm$.pipe(
       debounceTime(400),
       distinctUntilChanged(),
       switchMap((term:string)=> this.articleService.searchArticle(term))
     )
   }
-  ngOnInit(): void {
-    this.articles = this.articleService.getArticles();
-  }
 
-  onQuantityChange(event: ArticleQuantityChange ):void{
-    const {article, quantity} = event;
+  onQuantityChange(change: ArticleQuantityChange ):void{
+    const {article, quantity} = change;
 
-    this.articleService.getArticles().subscribe(articles => {
-      const foundArticle = articles.find(a => a.id === article.id);
-        if(foundArticle){
-          foundArticle.quantityInCart = quantity;
-        }
+    this.articleService.changeQuantity(change.article.id, change.quantity)
+    .subscribe((res) => {
+     console.log(res.msg);
+     this.reloadArticleList.next();
     })
   }
 
