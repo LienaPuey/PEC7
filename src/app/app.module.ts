@@ -10,7 +10,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ArticleNewTemplateComponent } from './article-new-template/article-new-template.component';
 import { ArticleNewReactiveComponent } from './article-new-reactive/article-new-reactive.component';
 import { ArticleServiceService } from './services/article-service.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { CurrencyFormatPipe } from './pipes/currency-format.pipe';
 import { ImageUrlDefaultPipe } from './pipes/image-url-default.pipe';
 import { LoginComponent } from './login/login.component';
@@ -18,6 +18,7 @@ import { RegisterComponent } from './register/register.component';
 import { UserService } from './services/user.service';
 import { UserStoreService } from './services/user-store.service';
 import { ArticleDetailComponent } from './article-detail/article-detail.component';
+import { ArticleAppInterceptor } from './article-app.interceptor';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,12 @@ import { ArticleDetailComponent } from './article-detail/article-detail.componen
   providers: [
     ArticleServiceService,
     UserService,
-    UserStoreService
+    UserStoreService, 
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass : ArticleAppInterceptor,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent]
 })

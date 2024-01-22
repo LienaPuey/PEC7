@@ -7,7 +7,7 @@ import { Observable, catchError, tap } from 'rxjs';
 })
 export class UserService {
   private baseUrl = 'http://localhost:3000/api';
-
+  private tokenKey = 'auth_token';
   constructor(private http: HttpClient) { 
 
   }
@@ -22,6 +22,9 @@ export class UserService {
     const loginUrl = `${this.baseUrl}/user/login`;
 
     return this.http.post(loginUrl, {username, password}).pipe(
+      tap((response:any) => {
+        localStorage.setItem(this.tokenKey, response.token);
+      }),
       catchError(error=>{
         throw new Error('Error en el inicio de sesión');
       })
