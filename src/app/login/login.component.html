@@ -1,1 +1,15 @@
-<p>login works!</p>
+<div class="container text-center">
+    <form [formGroup]="loginForm"  (ngSubmit)="login()" class="form-signin ">
+        <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+        <input formControlName="username" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus [class.is-invalid]="loginForm.get('username')?.invalid && loginForm.get('username')?.touched">
+        <div class="invalid-feedback" *ngIf="loginForm.get('username')?.hasError('required') && loginForm.get('username')?.touched">
+            El email es obligatorio.
+          </div>
+        <input formControlName="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required [class.is-invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+        <div class="invalid-feedback" *ngIf="loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched">
+            La constraseña es obligatoria.
+          </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      </form>
+</div>

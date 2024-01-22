@@ -1,1 +1,15 @@
-<p>register works!</p>
+<div class="container text-center">
+  <form [formGroup]="registerForm" (ngSubmit)="register()" class="form-signin ">
+      <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+      <h1 class="h3 mb-3 font-weight-normal">Please sign up</h1>
+      <input formControlName="username" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus [class.is-invalid]="registerForm.get('username')?.invalid && registerForm.get('username')?.touched">
+      <div class="invalid-feedback" *ngIf="registerForm.get('username')?.hasError('required') && registerForm.get('username')?.touched">
+          El email es obligatorio.
+        </div>
+      <input formControlName="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required [class.is-invalid]="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+      <div class="invalid-feedback" *ngIf="registerForm.get('password')?.hasError('required') && registerForm.get('password')?.touched">
+          La constraseña es obligatoria.
+        </div>
+      <button class="btn btn-lg btn-primary btn-block" type="submit" >Sign up</button>
+    </form>
+</div>

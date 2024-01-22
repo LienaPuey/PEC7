@@ -16,6 +16,10 @@ export class ArticleServiceService {
     return this.http.get<Article[]>(this.baseUrl);
   }
 
+  getArticle(id:string): Observable<Article>{
+    return this.http.get<Article>(this.baseUrl + id);
+  }
+  
   changeQuantity(articleID:number, changeInQuantity:number):Observable<Article|null> {
     const patchData = {quantityInCart : changeInQuantity}
     const url = `${this.baseUrl}/${articleID}`;

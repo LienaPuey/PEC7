@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent},
   { path: 'articles/list', component: ArticleListComponent},
   { path: 'articles/create', component: ArticleNewReactiveComponent},
-  { path: 'articles/:code', component: ArticleDetailComponent },
+  { path: 'articles/:id', component: ArticleDetailComponent },
   { path: '**', redirectTo: '/register' }
 ];
 
