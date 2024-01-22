@@ -31,6 +31,8 @@ export class LoginComponent {
       .subscribe((resp) => {
         console.log("Succesfully logged", resp);
       this.router.navigate(['articles/list']);
+      }, (err)=> {
+        console.error('Error login', err);
       })
     }
   }
