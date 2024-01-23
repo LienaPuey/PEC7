@@ -31,7 +31,7 @@ export class LoginComponent {
       this.userService.login(username, password)
       .subscribe((resp) => {
         console.log("Succesfully logged", resp);
-      this.router.navigate(['articles/create']);
+      this.router.navigate(['article/create']);
       }, (err)=> {
         console.error('Error login', err);
       })
@@ -43,7 +43,7 @@ export class LoginComponent {
         this.userStore.setRedirectUrl(null);
         this.router.navigateByUrl(redirectUrl);
       }else {
-        this.router.navigate(['articles/list'])
+        this.router.navigate(['article/list'])
       }
     }
   }

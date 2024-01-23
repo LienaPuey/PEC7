@@ -32,7 +32,7 @@ export class RegisterComponent {
       .subscribe((resp)=> {
         console.log("Succesfully registered", resp);
         this.message = resp.msg;
-        this.router.navigate(['login']);
+        this.router.navigate(['user/login']);
       }, (err)=> {
         console.error('Error registering', err);
       })
