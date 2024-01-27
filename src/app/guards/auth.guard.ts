@@ -10,7 +10,10 @@ export class AuthGuard implements CanActivate {
 
   constructor(private userStore: UserStoreService, private router: Router){}
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    if(this.userStore.getAuthenticated()){return true};
+    if(this.userStore.getAuthenticated()){
+      console.log("loggeado") 
+      return true
+    };
     this.userStore.setRedirectUrl(state.url);
 
     this.router.navigate(['login']);

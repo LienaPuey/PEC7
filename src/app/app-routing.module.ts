@@ -7,11 +7,11 @@ const routes: Routes = [
   // { path: '', component: ArticleListComponent},
   // { path: 'articles/create', component: ArticleNewReactiveComponent, canActivate: [AuthGuard]},
   // { path: 'articles/:id', component: ArticleDetailComponent },
-  { path: '**', redirectTo: 'user/register' },
   // { path: 'user', loadChildren: () => import('./modules/user/user.module').then((m) => m.UserModule) },
   // { path: 'article', loadChildren: () => import('./modules/article/article.module').then((m)=> m.ArticleModule) }
   { path: 'user', loadChildren: () => import('./modules/user/user.module').then(m => m.UserModule) },
-  { path: 'article', loadChildren: () => import('./modules/article/article.module').then(m => m.ArticleModule) }
+  { path: 'article', loadChildren: () => import('./modules/article/article.module').then(m => m.ArticleModule) },
+  { path: '**', redirectTo: 'user/register' }
 ];
 
 @NgModule({
