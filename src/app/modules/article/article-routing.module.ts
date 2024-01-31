@@ -8,7 +8,7 @@ import { ArticleDetailComponent } from 'src/app/article-detail/article-detail.co
 const routes: Routes = [
   { path: 'list', component : ArticleListComponent},
   { path: 'create', component: ArticleNewReactiveComponent, canActivate: [AuthGuard]},
-  { path: ':id', component: ArticleDetailComponent}
+  { path: 'articles/:id', component: ArticleDetailComponent}
 ]
 
 @NgModule({
